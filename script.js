@@ -12,9 +12,24 @@
 function compChoose() {
     // Selects a random number for the computer player 0-2, 0 == rock, 1 == paper, 2 == scissors
     let compChoice = Math.floor(Math.random() * 3);
-    console.log(compChoice);
+    return compChoice;
 }
 
 function playerChoose() {
-    let playerChoice = 
+    // Collects the player choice as a text string and returns 0 for rock, 1 for paper, 2 for scissors. Function will repeat if invalid answer.
+    let playerChoice = prompt('Enter your choice: Rock, Paper, Scissors').toLowerCase();
+
+    switch (playerChoice) {
+        case 'rock': playerChoice = 0;
+            return playerChoice;
+
+        case 'paper': playerChoice = 1;
+            return playerChoice;
+
+        case 'scissors': playerChoice = 2;
+            return playerChoice;
+
+        default: alert('Invalid entry, please choose again!'); playerChoose();
+            break;
+    }
 }
