@@ -1,17 +1,7 @@
-// Rock Paper Scissors
-
-// GENERAL OUTLINE---------------------------------------------------
-// Generate random selection of rock paper or scissors for opponent that is hidden from user
-// Allow user to make selection of either rock paper or scissors
-// Compare users selection to random selection determined earlier
-// If selection is the same it is a tie and reset selections
-// if selection is different determine winner and add point to winner and reset selections
-// check if either player has 5 points, when this is reached declare winner and overall gamestate
-// END OF OUTLINE----------------------------------------------------
-
 // Rock == 0, Paper == 1, Scissors == 2
 let playerChoice = 0;
 let compChoice = 0;
+
 let playerPoints = 0;
 let computerPoints = 0;
 let tiePoints = 0;
@@ -78,24 +68,39 @@ function playRound(e) {
     else return;
 }
 
+function resetPoints() {
+    playerPoints = 0;
+    computerPoints = 0;
+    tiePoints = 0;
+    refreshScoreboard();
+}
+
+function refreshScoreboard() {
+    playerScore.textContent = `Player: ${playerPoints}`;
+    computerScore.textContent = `Computer: ${computerPoints}`
+    tieScore.textContent = `Ties: ${tiePoints}`
+}
+
 function updatePoints(roundResult) {
     if (roundResult === 'playerWins') {
         playerPoints++;
-        playerScore.textContent = `Player: ${playerPoints}`;
+        refreshScoreboard();
     }
     else if (roundResult === 'computerWins') {
         computerPoints++;
-        computerScore.textContent = `Computer: ${computerPoints}`
+        refreshScoreboard();
     }
     else if (roundResult === 'tie') {
         tiePoints++;
-        tieScore.textContent = `Ties: ${computerPoints}`
+        refreshScoreboard();
     }
     if (playerPoints === 5) {
         alert('YOU WON!!!')
+        resetPoints();
     }
     else if (computerPoints === 5) {
         alert('YOU LOST!!!')
+        resetPoints();
     }
 }
 
