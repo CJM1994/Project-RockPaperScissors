@@ -64,8 +64,6 @@ function playRound(e) {
         updatePoints('computerWins');
         return;
     }
-    // This should not happen
-    else return;
 }
 
 function resetPoints() {
@@ -104,7 +102,7 @@ function updatePoints(roundResult) {
     }
 }
 
-const buttons = document.querySelectorAll('button');
+const buttons = document.querySelectorAll('img');
 buttons.forEach(button => addEventListener('click', playRound));
 
 const playerScore = document.querySelector('.player-score');
